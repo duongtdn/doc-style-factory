@@ -1,5 +1,5 @@
 {
-  "name": "doc-style-factory",
+  "name": "@duongtdn/doc-style-factory",
   "version": "1.0.0",
   "description": "",
   "main": "src/index.js",
