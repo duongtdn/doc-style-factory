@@ -62,3 +62,19 @@ test('Test with color pattern', () => {
     { text: '.' },
   ])
 });
+
+
+test('Test with background color pattern', () => {
+  const factory = new DocStyleFactory();
+  const str = 'Test [bgblue]text [red]color[/red] in blue[/bgblue].';
+  console.log( factory.create(str) )
+  expect(
+    factory.create(str)
+  ).toEqual([
+    { text: 'Test ' },
+    { text: 'text ', style: { backgroundColor: COLOR.blue } },
+    { text: 'color', style: { backgroundColor: COLOR.blue, color: COLOR.red } },
+    { text: ' in blue', style: { backgroundColor: COLOR.blue } },
+    { text: '.' },
+  ])
+});

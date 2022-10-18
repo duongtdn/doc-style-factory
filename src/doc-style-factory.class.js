@@ -16,7 +16,11 @@ export default class DocStyleFactory {
     .useCleaner(/\[\/?\w+\]/);
 
     const colors = ['blue', 'red', 'green'];
-    colors.forEach(color => this.factory.useStyle(`\\[${color}\\](?:\\[\\w+\\])?[^,\\[]*(?:\\[\\/\\w+\\])?\\[\\/${color}\\]`, { color: COLOR[color] }))
+    colors.forEach(color => {
+      this.factory
+      .useStyle(`\\[${color}\\](?:\\[\\w+\\])?[^,\\[]*(?:\\[\\/\\w+\\])?\\[\\/${color}\\]`, { color: COLOR[color] })
+      .useStyle(`\\[bg${color}\\](?:\\[\\w+\\])?[^,\\[]*(?:\\[\\/\\w+\\])?\\[\\/bg${color}\\]`, { backgroundColor: COLOR[color] })
+    })
   }
 
   create(text) {
