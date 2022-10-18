@@ -1,6 +1,6 @@
 "use strict"
 
-import StyleFactory from './style-factory.class';
+import StyleFactory from '@duongtdn/style-factory';
 
 export default class DocStyleFactory {
 
