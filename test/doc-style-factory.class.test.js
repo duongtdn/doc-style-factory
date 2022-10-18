@@ -1,6 +1,7 @@
 " use strict"
 
 import DocStyleFactory from "../src";
+import COLOR from '../src/color';
 
 test('Test if corrrect style patterns and cleaner patterns are used', () => {
   const factory = new DocStyleFactory();
@@ -44,6 +45,20 @@ test('Test if complex cascaded style is used', () => {
     { text: ' and ' },
     { text: 'underline', style: { fontWeight: 'bold', textDecoration: 'underline' } },
     { text: ' with bold', style: { fontWeight: 'bold' } },
+    { text: '.' },
+  ])
+});
+
+test('Test with color pattern', () => {
+  const factory = new DocStyleFactory();
+  const str = 'Test [blue]text [red]color[/red] in blue[/blue].';
+  expect(
+    factory.create(str)
+  ).toEqual([
+    { text: 'Test ' },
+    { text: 'text ', style: { color: COLOR.blue } },
+    { text: 'color', style: { color: COLOR.red } },
+    { text: ' in blue', style: { color: COLOR.blue } },
     { text: '.' },
   ])
 });

@@ -2,6 +2,8 @@
 
 import StyleFactory from '@duongtdn/style-factory';
 
+import COLOR from './color';
+
 export default class DocStyleFactory {
 
   factory = new StyleFactory();
@@ -12,6 +14,9 @@ export default class DocStyleFactory {
     .useStyle(/\[i\](?:\[\w+\])?[^,\[]*(?:\[\/\w+\])?\[\/i\]/, { fontStyle: 'italic' })
     .useStyle(/\[u\](?:\[\w+\])?[^,\[]*(?:\[\/\w+\])?\[\/u\]/, { textDecoration: 'underline' })
     .useCleaner(/\[\/?\w+\]/);
+
+    const colors = ['blue', 'red', 'green'];
+    colors.forEach(color => this.factory.useStyle(`\\[${color}\\](?:\\[\\w+\\])?[^,\\[]*(?:\\[\\/\\w+\\])?\\[\\/${color}\\]`, { color: COLOR[color] }))
   }
 
   create(text) {
