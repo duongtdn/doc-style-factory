@@ -10,16 +10,16 @@ export default class DocStyleFactory {
 
   constructor() {
     this.factory
-    .useStyle(/\[b\](?:\[\w+\])?[^,\[]*(?:\[\/\w+\])?\[\/b\]/, { fontWeight: 'bold' })
-    .useStyle(/\[i\](?:\[\w+\])?[^,\[]*(?:\[\/\w+\])?\[\/i\]/, { fontStyle: 'italic' })
-    .useStyle(/\[u\](?:\[\w+\])?[^,\[]*(?:\[\/\w+\])?\[\/u\]/, { textDecoration: 'underline' })
+    .useStyle(/\[b\](?:\[\w+\])*[^,\[]*(?:\[\/\w+\])*\[\/b\]/, { fontWeight: 'bold' })
+    .useStyle(/\[i\](?:\[\w+\])*[^,\[]*(?:\[\/\w+\])*\[\/i\]/, { fontStyle: 'italic' })
+    .useStyle(/\[u\](?:\[\w+\])*[^,\[]*(?:\[\/\w+\])*\[\/u\]/, { textDecoration: 'underline' })
     .useCleaner(/\[\/?\w+\]/);
 
     const colors = ['blue', 'red', 'green'];
     colors.forEach(color => {
       this.factory
-      .useStyle(`\\[${color}\\](?:\\[\\w+\\])?[^,\\[]*(?:\\[\\/\\w+\\])?\\[\\/${color}\\]`, { color: COLOR[color] })
-      .useStyle(`\\[bg${color}\\](?:\\[\\w+\\])?[^,\\[]*(?:\\[\\/\\w+\\])?\\[\\/bg${color}\\]`, { backgroundColor: COLOR[color] })
+      .useStyle(`\\[${color}\\](?:\\[\\w+\\])*[^,\\[]*(?:\\[\\/\\w+\\])*\\[\\/${color}\\]`, { color: COLOR[color] })
+      .useStyle(`\\[bg${color}\\](?:\\[\\w+\\])*[^,\\[]*(?:\\[\\/\\w+\\])*\\[\\/bg${color}\\]`, { backgroundColor: COLOR[color] })
     })
   }
 

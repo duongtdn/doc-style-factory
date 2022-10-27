@@ -67,7 +67,6 @@ test('Test with color pattern', () => {
 test('Test with background color pattern', () => {
   const factory = new DocStyleFactory();
   const str = 'Test [bgblue]text [red]color[/red] in blue[/bgblue].';
-  console.log( factory.create(str) )
   expect(
     factory.create(str)
   ).toEqual([
@@ -76,5 +75,16 @@ test('Test with background color pattern', () => {
     { text: 'color', style: { backgroundColor: COLOR.blue, color: COLOR.red } },
     { text: ' in blue', style: { backgroundColor: COLOR.blue } },
     { text: '.' },
+  ])
+});
+
+test('Test three cascaded level', () => {
+  const factory = new DocStyleFactory();
+  const str = 'Test [blue][u][i]text[/i][/u][/blue]';
+  expect(
+    factory.create(str)
+  ).toEqual([
+    { text: 'Test ' },
+    { text: 'text', style: { color: COLOR.blue, fontStyle: 'italic', textDecoration: 'underline' } },
   ])
 });
